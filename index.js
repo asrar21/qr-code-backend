@@ -1,10 +1,11 @@
+
 const express = require("express");
 const cors = require("cors");
 const QRCode = require("qrcode");
 const { createCanvas, loadImage } = require("canvas");
 const nodemailer = require('nodemailer');
 
-let PORT = process.env.PORT || 8000
+
 const corsOptions ={
   origin:'*', 
   credentials:true,            //access-control-allow-credentials:true
@@ -83,6 +84,6 @@ smtpTransport.sendMail(mailOptions, function (error, response) {
  
 });
 
-app.listen(PORT, () => {
+app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
 });
