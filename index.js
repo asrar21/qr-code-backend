@@ -2,7 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const QRCode = require("qrcode");
-const { createCanvas, loadImage } = require("canvas");
+
 const nodemailer = require('nodemailer');
 
 
@@ -36,19 +36,7 @@ let  smtpTransport = nodemailer.createTransport({
 
 async function create(dataForQRcode,color) {
  
-  // const canvas = createCanvas(50, 50);
-  // QRCode.toCanvas(
-  //     canvas,
-  //     dataForQRcode,
-  //     {
-  //         errorCorrectionLevel: "H",
-  //         margin: 1,
-  //         color: {
-  //             dark: color,
-  //             light: "#ffffff",
-  //         },
-  //     }
-  // );
+ 
   return  QRCode.toDataURL(dataForQRcode,{
     errorCorrectionLevel: "H",
     margin: 1,
