@@ -35,20 +35,28 @@ let  smtpTransport = nodemailer.createTransport({
 });
 
 async function create(dataForQRcode,color) {
-  const canvas = createCanvas(50, 50);
-  QRCode.toCanvas(
-      canvas,
-      dataForQRcode,
-      {
-          errorCorrectionLevel: "H",
-          margin: 1,
-          color: {
-              dark: color,
-              light: "#ffffff",
-          },
-      }
-  );
-  return canvas.toDataURL("image/png");
+ 
+  // const canvas = createCanvas(50, 50);
+  // QRCode.toCanvas(
+  //     canvas,
+  //     dataForQRcode,
+  //     {
+  //         errorCorrectionLevel: "H",
+  //         margin: 1,
+  //         color: {
+  //             dark: color,
+  //             light: "#ffffff",
+  //         },
+  //     }
+  // );
+  return  QRCode.toDataURL(dataForQRcode,{
+    errorCorrectionLevel: "H",
+    margin: 1,
+    color: {
+        dark: color,
+        light: "#ffffff",
+    },
+});
 }
 app.get("/", (req, res) => {
   res.send("hello world")
@@ -60,6 +68,7 @@ app.post("/qr-code-generate", async (req, res) => {
     qrText,
     qrColor
   );
+ 
   var mailOptions = {
     from: "asrar.alam@yahoo.com", // sender address
     to: qrEmail, // list of receivers
